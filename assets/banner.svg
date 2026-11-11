@@ -1,0 +1,44 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='320' viewBox='0 0 1200 320' role='img' aria-label='CronLens banner'>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#14110f'/><stop offset='1' stop-color='#2e1a0e'/></linearGradient>
+    <linearGradient id='ac' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='#ff6b35'/><stop offset='1' stop-color='#ffd23f'/></linearGradient>
+  </defs>
+  <style>
+    text { font-family: JetBrains Mono, Fira Code, Consolas, Courier New, monospace; }
+    .glow { animation: glow 3s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+    @keyframes glow { from { opacity: .2; transform: scale(.9); } to { opacity: .6; transform: scale(1.1); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none; } }
+  </style>
+  <rect width='1200' height='320' rx='24' fill='url(#bg)'/>
+  <circle class='glow' cx='1090' cy='60' r='95' fill='#ff6b35' opacity='.22'/>
+  <circle class='glow' cx='1120' cy='270' r='60' fill='#ffd23f' opacity='.18'/>
+
+  <rect x='90' y='40' width='240' height='240' rx='22' fill='#1c1713' stroke='#ff6b35' stroke-opacity='.45' stroke-width='2'/>
+  <text x='108' y='104' font-size='20' font-weight='700' xml:space='preserve' textLength='204' lengthAdjust='spacing'><tspan fill='#ff6b35'>*/15</tspan> <tspan fill='#ffd23f'>9-17</tspan> <tspan fill='#e8dcd2'>*</tspan> <tspan fill='#e8dcd2'>*</tspan> <tspan fill='#7bd88f'>1-5</tspan></text>
+
+  <g fill='#ff6b35'>
+    <rect x='108' y='114' width='48' height='4' rx='2' opacity='0'><animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.06;0.1;0.92;1' dur='10s' repeatCount='indefinite'/></rect>
+    <rect x='168' y='114' width='48' height='4' rx='2' fill='#ffd23f' opacity='0'><animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.16;0.2;0.92;1' dur='10s' repeatCount='indefinite'/></rect>
+    <rect x='228' y='114' width='12' height='4' rx='2' fill='#e8dcd2' opacity='0'><animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.26;0.3;0.92;1' dur='10s' repeatCount='indefinite'/></rect>
+    <rect x='252' y='114' width='12' height='4' rx='2' fill='#e8dcd2' opacity='0'><animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.36;0.4;0.92;1' dur='10s' repeatCount='indefinite'/></rect>
+    <rect x='276' y='114' width='36' height='4' rx='2' fill='#7bd88f' opacity='0'><animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.46;0.5;0.92;1' dur='10s' repeatCount='indefinite'/></rect>
+  </g>
+  <g font-size='10' text-anchor='middle' fill='#a8978a'>
+    <text x='132' y='134' opacity='0'>minute<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.06;0.1;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='192' y='134' opacity='0'>hour<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.16;0.2;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='234' y='134' opacity='0'>day<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.26;0.3;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='258' y='134' opacity='0'>mon<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.36;0.4;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='294' y='134' opacity='0'>weekday<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.46;0.5;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+  </g>
+
+  <text x='108' y='176' font-size='13' fill='#a8978a'>next runs</text>
+  <g font-size='17' fill='#e8dcd2'>
+    <text x='108' y='206' opacity='0'>Mon 09:00<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.55;0.6;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='108' y='232' opacity='0'>Mon 09:15<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.65;0.7;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+    <text x='108' y='258' opacity='0'>Mon 09:30<animate attributeName='opacity' values='0;0;1;1;0' keyTimes='0;0.75;0.8;0.92;1' dur='10s' repeatCount='indefinite'/></text>
+  </g>
+
+  <text x='390' y='150' font-size='76' font-weight='700' fill='url(#ac)' font-family='Segoe UI, Roboto, Helvetica, Arial, sans-serif'>CronLens</text>
+  <text x='392' y='200' font-size='28' fill='#e6d9cd' font-family='Segoe UI, Roboto, Helvetica, Arial, sans-serif'>Cron, explained like a human.</text>
+  <text x='392' y='245' font-size='20' fill='#8f7d6f'>Plain English  •  Next runs  •  Clear errors  •  Tested</text>
+</svg>

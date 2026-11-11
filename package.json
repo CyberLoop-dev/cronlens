@@ -1,0 +1,8 @@
+{
+  "name": "cronlens",
+  "version": "1.0.0",
+  "description": "Explain cron expressions in plain English and list the next run times.",
+  "private": true,
+  "license": "MIT",
+  "scripts": { "test": "node cron.test.js" }
+}

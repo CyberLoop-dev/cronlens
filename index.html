@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>CronLens</title>
+<meta name='description' content='Explain cron expressions in plain English and see the next run times.'>
+<link rel='icon' href='assets/logo.svg' type='image/svg+xml'>
+<link rel='stylesheet' href='styles.css'>
+</head>
+<body>
+<header class='top'>
+  <div class='brand'><img src='assets/logo.svg' alt='' width='28' height='28'><span>CronLens</span></div>
+  <button id='theme' class='icon' type='button' aria-label='Toggle theme'><svg viewBox='0 0 24 24'><path d='M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10z'/></svg></button>
+</header>
+<main>
+  <section class='card'>
+    <label for='expr'>Cron expression</label>
+    <div class='field'>
+      <input id='expr' type='text' value='30 9 * * 1-5' spellcheck='false' autocomplete='off' autocapitalize='off' placeholder='*/15 9-17 * * 1-5'>
+      <button id='copy' type='button'>Copy</button>
+    </div>
+    <p id='err' class='err' role='alert'></p>
+    <div id='presets' class='chips' aria-label='Examples'></div>
+  </section>
+
+  <div id='result' hidden>
+    <section class='card'>
+      <h2>In plain English</h2>
+      <p id='summary' class='summary' aria-live='polite'></p>
+      <div id='fields' class='fields'></div>
+    </section>
+    <section class='card'>
+      <h2>Next runs</h2>
+      <p id='tz' class='dim'></p>
+      <ol id='runs' class='runs'></ol>
+    </section>
+  </div>
+
+  <details class='card'>
+    <summary>Cheat sheet</summary>
+    <table>
+      <tr><th>Field</th><th>Allowed</th></tr>
+      <tr><td>Minute</td><td>0-59</td></tr>
+      <tr><td>Hour</td><td>0-23</td></tr>
+      <tr><td>Day of month</td><td>1-31</td></tr>
+      <tr><td>Month</td><td>1-12 or JAN-DEC</td></tr>
+      <tr><td>Day of week</td><td>0-6 or SUN-SAT (7 also means Sunday)</td></tr>
+    </table>
+    <p><code>*</code> any value &nbsp; <code>,</code> list &nbsp; <code>-</code> range &nbsp; <code>/</code> step. Shortcuts: <code>@hourly</code> <code>@daily</code> <code>@weekly</code> <code>@monthly</code> <code>@yearly</code>.</p>
+    <p>If both day of month and day of week are restricted, a time matches when <em>either</em> does, like standard cron.</p>
+  </details>
+</main>
+<div id='toast' class='toast' role='status' aria-live='polite'></div>
+<script src='cron.js'></script>
+<script src='app.js'></script>
+</body>
+</html>

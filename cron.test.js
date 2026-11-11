@@ -1,0 +1,25 @@
+const C = require('./cron.js');
+let failed = 0;
+const eq = (name, a, b) => { const ok = JSON.stringify(a) === JSON.stringify(b); if (!ok) failed++; console.log(ok ? 'ok  ' : 'FAIL', name, ok ? '' : JSON.stringify(a) + ' != ' + JSON.stringify(b)); };
+const throws = (name, fn, msg) => { try { fn(); failed++; console.log('FAIL', name, '(no error)'); } catch (e) { const ok = e.message.includes(msg); if (!ok) failed++; console.log(ok ? 'ok  ' : 'FAIL', name, ok ? '' : e.message); } };
+const p2 = (n) => String(n).padStart(2, '0');
+const iso = (d) => d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()) + ' ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+const runs = (e, from, n) => C.nextRuns(C.parse(e), from, n).map(iso);
+
+eq('*/15 next 3', runs('*/15 * * * *', new Date(2026, 0, 1, 0, 0), 3), ['2026-01-01 00:15', '2026-01-01 00:30', '2026-01-01 00:45']);
+eq('weekdays 09:00 skip the weekend', runs('0 9 * * 1-5', new Date(2026, 0, 2, 10, 0), 2), ['2026-01-05 09:00', '2026-01-06 09:00']);
+eq('leap day', runs('30 2 29 2 *', new Date(2026, 0, 1), 1), ['2028-02-29 02:30']);
+eq('day-of-month OR weekday', runs('0 0 13 * 5', new Date(2026, 0, 1), 2), ['2026-01-02 00:00', '2026-01-09 00:00']);
+eq('names', runs('0 8 * jan mon', new Date(2026, 0, 1), 1), ['2026-01-05 08:00']);
+eq('@daily', runs('@daily', new Date(2026, 0, 1, 12, 0), 1), ['2026-01-02 00:00']);
+eq('7 means Sunday', [...C.parse('0 0 * * 7').dow.set], [0]);
+eq('describe weekdays 09:30', C.describe('30 9 * * 1-5').summary, 'At 09:30, on Monday through Friday');
+eq('describe every 15', C.describe('*/15 * * * *').summary, 'Every 15 minutes');
+eq('describe every minute', C.describe('* * * * *').summary, 'Every minute');
+eq('describe monthly', C.describe('0 0 1 * *').summary, 'At 00:00, on day 1');
+throws('wrong field count', () => C.parse('* * * *'), 'Expected 5 fields');
+throws('out of range', () => C.parse('61 * * * *'), 'between 0 and 59');
+throws('backwards range', () => C.parse('* 10-5 * * *'), 'backwards');
+throws('unknown name', () => C.parse('* * * foo *'), 'Unknown name');
+console.log(failed ? 'FAILURES: ' + failed : 'all passed');
+process.exit(failed ? 1 : 0);
